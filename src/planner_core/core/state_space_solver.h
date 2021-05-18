@@ -5,11 +5,10 @@
 #include "search_algorithms/astar_engine.h"
 #include "search_algorithms/greedy_bfs_engine.h"
 #include "search_algorithms/batched_engine.h"
-#include </home/lidia/AT/at_lite-md-mod/src/planner_core/core/algorithm/graph.h>
-#include </home/lidia/AT/at_lite-md-mod/src/planner_core/core/UExternalMemoryController.h>
+#include </home/lidia/AT/at_lite-amrr-md-mod/src/planner_core/core/algorithm/graph.h>
+#include </home/lidia/AT/at_lite-amrr-md-mod/src/planner_core/core/UExternalMemoryController.h>
 #include <thread>
 #include <chrono>
-#include <stdio.h>
 #include <math.h>
 
 using namespace std::chrono;

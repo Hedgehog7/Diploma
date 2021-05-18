@@ -14,8 +14,6 @@ class MainWidget : public QWidget
 public:
     explicit MainWidget(QWidget *parent = nullptr);
     ~MainWidget();
-    std::vector<std::string> outFName;
-    std::vector<std::string> inFName;
 
 private slots:
     void on_pushButton_clicked();

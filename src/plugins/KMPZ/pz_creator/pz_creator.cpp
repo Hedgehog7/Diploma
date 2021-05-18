@@ -105,7 +105,22 @@ void PZCreator::removeQuestion()
 {
 	std::cout << "PZ: " << _knowledgeField.to_string() << std::endl;
 
-	_questionAnswerStack.pop();
+    _questionAnswerStack.pop();
+}
+
+const branch_t& PZCreator::getLastBranch() const
+{
+    branch_t* result = new branch_t;
+    auto conditions = _questionAnswerStack.getConditions();
+    for (auto condition: conditions){
+        result->first.push_back(condition.attributeType + ": " + condition.attributeValues.back());
+    }
+    result->second = _last_branch_conclusions;
+    return *result;
+}
+
+void PZCreator::removeBranchConclusions(){
+    _last_branch_conclusions.clear();
 }
 
 std::string PZCreator::getBZ()
@@ -139,6 +154,7 @@ void PZCreator::addConclusion(const std::string& conclusion)
 	auto rule = _knowledgeField.add_rule("Правило" + std::to_string(_nRules++)); //"Правило"
 	_knowledgeField.add_condition(rule, getCurrentCondition());
 	_knowledgeField.add_action(rule, action);
+    _last_branch_conclusions.push_back(conclusion);
 }
 
 const QuestionAnswerStack::Condition& PZCreator::getLastQuestion() const

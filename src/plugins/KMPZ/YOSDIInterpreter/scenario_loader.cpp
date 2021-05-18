@@ -16,7 +16,7 @@ std::string get_path()
 
 ScenarioLoader::ScenarioLoader(const std::string& taskType)
 {
-    std::ifstream file(get_path() + "/src/plugins/KMPZ/YOSDIInterpreter/scenarios/dio.scn");//УКАЗАТЬ ВЕРНЫЙ ПУТЬ!!!
+    std::ifstream file(get_path() + "/resources/scenarios/dio.scn");
     loadScenario(file);
 }
 

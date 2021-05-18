@@ -12,7 +12,7 @@ APlugin * AT_CREATE_PLUGIN_FN()
 DataMiningPlugin::DataMiningPlugin() :AUtilityPlugin("data_mining", "Combined Method For knowledge Acquisition") {
 }
 
-int DataMiningPlugin::executeTask(ATaskExecutionWindow * wnd, const std::string&, const std::vector<ADocumentRef*>&, const std::vector<ADocumentRef*>& out_docs, const std::string& login) {
+int DataMiningPlugin::executeTask(ATaskExecutionWindow * wnd, const std::string&, const std::vector<ADocumentRef*>&, const std::vector<ADocumentRef*>& out_docs) {
   auto dialog = new DataMiningWindow(wnd);
   wnd->setCentralWidget(dialog);
 

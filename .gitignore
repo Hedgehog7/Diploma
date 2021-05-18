@@ -32,3 +32,4 @@ BuildPlanner/
 
 # All build
 /build/at_lite_build
+/build/build*

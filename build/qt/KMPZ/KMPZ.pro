@@ -33,7 +33,14 @@ SOURCES +=  kmpz.cpp \
             forms/diagnostics/conclusion_form.cpp \
             forms/diagnostics/has_other_answer.cpp \
             forms/diagnostics/can_make_conclusion_form.cpp \
-                        target_selector/target_selector.cpp\
+            AMRR/amrr_form.cpp \
+            AMRR/instruction.cpp \
+            AMRR/diffconcepts.cpp \
+            AMRR/repertorygrid.cpp \
+            AMRR/triads.cpp \
+            AMRR/confirm.cpp \
+            AMRR/no_diff_warning.cpp \
+                        target_selector/target_selector.cpp \
             atn/atn.cpp
 
 HEADERS +=  kmpz_global.h \
@@ -57,7 +64,14 @@ HEADERS +=  kmpz_global.h \
             forms/diagnostics/conclusion_form.h \
             forms/diagnostics/has_other_answer.h \
             forms/diagnostics/can_make_conclusion_form.h \
-                        target_selector/target_selector.h\
+            AMRR/amrr_form.h \
+            AMRR/instruction.h \
+            AMRR/diffconcepts.h \
+            AMRR/repertorygrid.h \
+            AMRR/triads.h \
+            AMRR/confirm.h \
+            AMRR/no_diff_warning.h \
+            target_selector/target_selector.h \
             atn/atn.h
 
 FORMS +=    forms/common/task_type_definition_form.ui \
@@ -68,6 +82,12 @@ FORMS +=    forms/common/task_type_definition_form.ui \
             forms/diagnostics/clearifying_information_form.ui \
             forms/diagnostics/conclusion_form.ui \
             forms/diagnostics/has_other_answer.ui \
-            forms/diagnostics/can_make_conclusion_form.ui
+            forms/diagnostics/can_make_conclusion_form.ui \
+            AMRR/amrr_form.ui \
+            AMRR/instruction.ui \
+            AMRR/diffconcepts.ui \
+            AMRR/repertorygrid.ui \
+            AMRR/confirm.ui \
+            AMRR/no_diff_warning.ui
 
 LIBS += -L../ATProject -lATProject -L../ATGUI -lATGUI -L../ATCore -lATCore -L../libiconv -liconv -L../libxml2 -lxml2

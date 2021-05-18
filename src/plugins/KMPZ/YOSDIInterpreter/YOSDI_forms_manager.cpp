@@ -5,6 +5,7 @@
 #include "../forms/diagnostics/has_other_answer.h"
 #include "../forms/diagnostics/clearifying_information_form.h"
 #include "../forms/diagnostics/conclusion_form.h"
+#include "../AMRR/amrr_form.h"
 
 #include <assert.h>
 
@@ -52,6 +53,9 @@ YOSDIForm* YOSDIFormsManager::getDiagnosticsForm(const std::string& formName)
 
     if( formName == "has_other_answer" )
         return new HasOtherAnswerForm(_widgetsParent, _interpreter);
+
+    if (formName == "amrr")
+        return new AMRR_form(_widgetsParent, _interpreter);
 
     assert(!"unknown form name");
     return nullptr;

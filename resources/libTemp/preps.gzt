@@ -1,0 +1,52 @@
+encoding "utf8";
+
+import "kwtypes.proto";
+import "articles_base.proto";
+
+prep1 "в" {
+	key = "в"
+}
+
+prep1 "во" {
+	key = "во"
+}
+
+prep1 "через" {
+	key = "через"
+}
+
+prep2 "с" {
+	key = "с"
+}
+
+prep2 "со" {
+	key = "со"
+}
+
+prep3 "до" {
+	key = "до"
+}
+
+prep3 "по" {
+	key = "по"
+}
+
+prep3 "к" {
+	key = "к"
+}
+
+prep4 "за" {
+	key = "за"
+}
+
+prep4 "на" {
+	key = "на"
+}
+
+prep4 "в течение" {
+	key = "в течение"
+}
+
+prep4 "на протяжении" {
+	key = "на протяжении"
+}

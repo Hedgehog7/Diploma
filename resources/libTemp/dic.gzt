@@ -1,0 +1,16 @@
+encoding "utf8";
+
+import "base.proto";     
+import "articles_base.proto";
+
+import "facttypes.proto";
+import "kwtypes.proto";
+
+import "preps.gzt";
+import "nouns.gzt";
+import "advs.gzt";
+
+TAuxDicArticle "grammar1111"
+{
+    key = { "tomita:temporal_lex.cxx" type=CUSTOM }
+}

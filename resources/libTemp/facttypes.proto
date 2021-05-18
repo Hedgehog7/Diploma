@@ -1,0 +1,12 @@
+﻿import "base.proto";
+import "facttypes_base.proto";
+
+message TempLexeme: NFactType.TFact 
+{
+    optional string Point = 1;
+	optional string Interval = 2;
+	optional string Period = 3;
+	optional string Start = 4;
+	optional string End = 5;
+	optional string Duration = 6;
+}

@@ -42,7 +42,7 @@ AError ATKMPZPlugin::executeCommand(const std::string&, std::string&)
 	return AError();
 }
 
-int ATKMPZPlugin::executeTask(ATaskExecutionWindow * wnd, const std::string&, const std::vector<ADocumentRef*>&, const std::vector<ADocumentRef*>&, const std::string& login)
+int ATKMPZPlugin::executeTask(ATaskExecutionWindow * wnd, const std::string&, const std::vector<ADocumentRef*>&, const std::vector<ADocumentRef*>&)
 {
     _interpreter.reset( new YOSDIInterpreter(wnd) );
 
