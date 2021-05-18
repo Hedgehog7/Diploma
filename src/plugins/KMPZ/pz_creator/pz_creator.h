@@ -10,6 +10,8 @@
 #include <memory>
 #include <QDir>
 
+typedef std::pair<std::vector<std::string>, std::vector<std::string>> branch_t;
+
 class PZCreator
 {
 public:
@@ -19,6 +21,8 @@ public:
 	void addAnswer(const std::string& answer);
 	void removeQuestion();
 	void addRule();
+    const branch_t& getLastBranch() const;
+    void removeBranchConclusions();
 	std::string getBZ();
 	std::string getBZXml();
 //	void PZCreator::writeToFile();
@@ -46,6 +50,7 @@ private:
 	ATN _atn;
 	QuestionAnswerStack _questionAnswerStack;
 	std::vector<std::string> _conclusions;
+    std::vector<std::string> _last_branch_conclusions;
 
 	std::map<int, std::vector<string>> _tempObjects;
 

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<knowledge-base>
+<types>
+<type id="ТИП1" meta="number" desc="number">
+<from>0</from>
+<to>100000</to>
+</type>
+<type id="ТИП3" meta="string" desc="string">
+</type>
+<type id="ТИП2" meta="string" desc="string">
+<value>болен сильно</value>
+<value>орви</value>
+<value>орз</value>
+</type>
+<type id="ТИП4" meta="string" desc="string">
+<value>повышенная температура</value>
+</type>
+<type id="ТИП5" meta="string" desc="string">
+<value>вчера болела голова, 2 дня назад болело горло</value>
+<value>кашель, насморк</value>
+</type>
+</types>
+<classes>
+<class id="Пациент" desc="Пациент">
+<properties>
+<property id="Атрибут1" type="ТИП2" desc="Атрибут1" source="inferred" />
+<property id="Атрибут2" type="ТИП3" desc="Атрибут2" source="inferred" />
+<property id="Атрибут3" type="ТИП4" desc="Атрибут3" source="inferred" />
+<property id="Атрибут4" type="ТИП5" desc="Атрибут4" source="inferred" />
+</properties>
+</class>
+<class id="world" desc="Класс верхнего уровня, включающий в себя экземпляры других классов и общие правила">
+<properties>
+<property id="Пациент" type="Пациент" source="none" create="true" desc="Пациент"/>
+</properties>
+<rules>
+<rule id="b0" meta="simple" desc="В-правило">
+<condition>
+<and>
+<eq>
+<ref id="Пациент">
+<ref id="Атрибут3"/>
+</ref>
+<value>повышенная температура</value>
+</eq>
+<eq>
+<ref id="Пациент">
+<ref id="Атрибут4"/>
+</ref>
+<value>кашель, насморк</value>
+</eq>
+</and>
+</condition>
+<action>
+<assign>
+<ref id="Пациент">
+<ref id="Атрибут1"/>
+</ref><value>орви</value>
+<with belief="50" probability="100" accuracy="0"/>
+</assign>
+</action>
+</rule>
+<rule id="b1" meta="simple" desc="В-правило">
+<condition>
+<and>
+<eq>
+<ref id="Пациент">
+<ref id="Атрибут3"/>
+</ref>
+<value>повышенная температура</value>
+</eq>
+<eq>
+<ref id="Пациент">
+<ref id="Атрибут4"/>
+</ref>
+<value>кашель, насморк</value>
+</eq>
+</and>
+</condition>
+<action>
+<assign>
+<ref id="Пациент">
+<ref id="Атрибут1"/>
+</ref><value>орз</value>
+<with belief="50" probability="100" accuracy="0"/>
+</assign>
+</action>
+</rule>
+<rule id="b2" meta="simple" desc="В-правило">
+<condition>
+<and>
+<eq>
+<ref id="Пациент">
+<ref id="Атрибут3"/>
+</ref>
+<value>повышенная температура</value>
+</eq>
+<eq>
+<ref id="Пациент">
+<ref id="Атрибут4"/>
+</ref>
+<value>вчера болела голова, 2 дня назад болело горло</value>
+</eq>
+</and>
+</condition>
+<action>
+<assign>
+<ref id="Пациент">
+<ref id="Атрибут1"/>
+</ref><value>болен сильно</value>
+<with belief="50" probability="100" accuracy="0"/>
+</assign>
+</action>
+</rule>
+</rules>
+</class>
+</classes>
+
+
+
+<IntervalsAndEvents>
+<Intervals>
+</Intervals>
+<Events>
+</Events>
+</IntervalsAndEvents>
+</knowledge-base>

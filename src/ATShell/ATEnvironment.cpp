@@ -514,7 +514,7 @@ void ATEnvironment::executeTask(APlanTask * task)
 		wdgPlanner->updatePlan();
 	});
 
-    int r = plug->executeTask(task_wnd, task->name, task->docsIn, task->docsOut, "login");
+	int r = plug->executeTask(task_wnd, task->name, task->docsIn, task->docsOut);
 
 	if (r == 1)
 	{

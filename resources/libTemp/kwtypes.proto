@@ -1,0 +1,14 @@
+import "base.proto";     
+import "articles_base.proto";
+import "kwtypes_base.proto";
+
+message noun : TAuxDicArticle {}
+message prep1 : TAuxDicArticle {}
+message prep2 : TAuxDicArticle {}
+message prep3 : TAuxDicArticle {}
+message prep4 : TAuxDicArticle {}
+message adv1 : TAuxDicArticle {}
+message adv2 : TAuxDicArticle {}
+message adv3 : TAuxDicArticle {}
+message adv4 : TAuxDicArticle {}
+message adv5 : TAuxDicArticle {}

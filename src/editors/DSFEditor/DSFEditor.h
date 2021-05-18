@@ -42,7 +42,7 @@ public:
 
 	virtual AError init(QToolBar * tb, QMenu * menu);
 	virtual void openFile(ADocument * file);
-        virtual int executeTask(ATaskExecutionWindow * wnd, const std::string & cmd_id, const std::vector<ADocumentRef*> & input_docs, const std::vector<ADocumentRef*> & out_docs, const std::string & login) override;
+	virtual int executeTask(ATaskExecutionWindow * wnd, const std::string & cmd_id, const std::vector<ADocumentRef*> & input_docs, const std::vector<ADocumentRef*> & out_docs) override;
 };
 
 

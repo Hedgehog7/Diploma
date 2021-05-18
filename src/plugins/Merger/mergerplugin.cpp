@@ -12,7 +12,7 @@ APlugin * AT_CREATE_PLUGIN_FN()
 MergerPlugin::MergerPlugin() :AUtilityPlugin("merger", "Combined Method For knowledge Acquisition") {
 }
 
-int MergerPlugin::executeTask(ATaskExecutionWindow * wnd, const std::string&, const std::vector<ADocumentRef*>&, const std::vector<ADocumentRef*>&, const std::string& login) {
+int MergerPlugin::executeTask(ATaskExecutionWindow * wnd, const std::string&, const std::vector<ADocumentRef*>&, const std::vector<ADocumentRef*>&) {
   auto dialog = new MergerWindow(wnd);
   wnd->setCentralWidget(dialog);
 

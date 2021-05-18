@@ -1,14 +1,5 @@
 #include "YOSDIInterpreter.h"
 
-#include "../forms/common/task_type_definition_form.h"
-#include "../forms/common/debug_pz.h"
-#include "../forms/diagnostics/question_answer_form.h"
-#include "YOSDI_forms_manager.h"
-#include "scenario_loader.h"
-#include "../pz_creator/pz_creator.h"
-#include <ATGUI/ATaskExecutionWindow.h>
-
-#include <assert.h>
 
 YOSDIInterpreter::YOSDIInterpreter(ATaskExecutionWindow* window)
     : _mainWindow(window)
@@ -40,14 +31,20 @@ void YOSDIInterpreter::event(const std::string& eventName)
         return;
     }
     auto connection = _connections.find(eventName);
-    if( connection != _connections.end() )
+    if( connection != _connections.end() ){
         executeProcedure(_scenarioLoader->getProcedure(connection->second));
+    }
 }
 
 void YOSDIInterpreter::addCondition(const std::string& attributeType, const std::string& attributeValue)
 {
     _PZCreator->addQuestionAndAnswer(attributeType, attributeValue);
 }
+
+//void addDifferentialCondition(const int& rule_number, const std::string& attributeValue)
+//{
+
+//}
 
 void YOSDIInterpreter::addAnswer(const std::string& answer)
 {
@@ -66,17 +63,26 @@ void YOSDIInterpreter::removeCondition()
         _isFinished = true;
 }
 
+void YOSDIInterpreter::removeBranchConclusions(){
+    _PZCreator->removeBranchConclusions();
+}
+
 void YOSDIInterpreter::addConclusion(const std::string& conclusion)
 {
     _PZCreator->addConclusion(conclusion);
 }
 
-const std::string& YOSDIInterpreter::getLastQuestion()
+const branch_t& YOSDIInterpreter::getLastBranch() const
+{
+    return _PZCreator->getLastBranch();
+}
+
+const std::string& YOSDIInterpreter::getLastQuestion() const
 {
     return _PZCreator->getLastQuestion().attributeType;
 }
 
-const std::string& YOSDIInterpreter::getLastAnswer()
+const std::string& YOSDIInterpreter::getLastAnswer() const
 {
     return _PZCreator->getLastQuestion().attributeValues.back();
 }
@@ -123,6 +129,11 @@ void YOSDIInterpreter::showForm(const std::string& formName)
 {
     _connections.clear();
     _currentWidget.reset( _formsManager->getForm(formName) );
+    _mainWindow->setCentralWidget(_currentWidget.get());
+}
+
+void YOSDIInterpreter::switchForm(YOSDIForm *form){
+    _currentWidget.reset(form);
     _mainWindow->setCentralWidget(_currentWidget.get());
 }
 

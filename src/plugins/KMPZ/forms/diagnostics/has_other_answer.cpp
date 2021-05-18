@@ -19,13 +19,14 @@ HasOtherAnswerForm::~HasOtherAnswerForm()
 
 void HasOtherAnswerForm::on_yesButton_clicked()
 {
+    _interpreter->removeBranchConclusions();
     _interpreter->event("yes");
 }
 
 void HasOtherAnswerForm::on_noButton_clicked()
 {
+    _interpreter->removeBranchConclusions();
     _interpreter->removeCondition();
-
     _interpreter->event("no");
 }
 

@@ -13,7 +13,7 @@ APlugin::APlugin(Type _type, const std::string & _name, const std::string & _des
 {
 }
 
-int APlugin::executeTask(ATaskExecutionWindow * wnd, const std::string & cmd_id, const std::vector<ADocumentRef*> & input_docs, const std::vector<ADocumentRef*> & out_docs, const std::string & login)
+int APlugin::executeTask(ATaskExecutionWindow * wnd, const std::string & cmd_id, const std::vector<ADocumentRef*> & input_docs, const std::vector<ADocumentRef*> & out_docs)
 {
 	return 1;
 }

@@ -1,0 +1,19 @@
+encoding "utf8";
+TTextMinerConfig {
+  Dictionary = "/home/antony/Documents/at_lite/resources/libTemp/dic.gzt";     
+  PrettyOutput = "/home/antony/Documents/at_lite/resources/libTemp/debug.html"; 
+  Input = {
+    File = "/home/antony/Documents/at_lite/resources/libTemp/input.txt";          
+    Type = dpl;               
+  }
+  Articles = [
+    { Name = "grammar1111" }    
+  ]
+  Facts = [
+    { Name = "TempLexeme" }
+  ]
+  Output = {
+    File = "/home/antony/Documents/at_lite/resources/libTemp/output.xml";        
+    Format = xml;              
+  }
+}
