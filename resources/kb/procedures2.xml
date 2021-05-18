@@ -1,0 +1,509 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<document>
+  <procedures>
+    <procedure name="Построение статической ИЭС">
+      <nodes>
+        <node id="0" name="Статическая НФ-операция" type="NFFunction" />
+        <node id="1" name="Задать начальную ситуацию" type="Function" />
+        <node id="2" name="Отобразить рекомендации" type="Function" />
+        <node id="3" name="Объяснить" type="Function" />
+        <node id="4" name="Пользователь" type="Entity" />
+        <node id="5" name="Выполнить расчет" type="Function" />
+        <node id="6" name="Пакет прикладных программ" type="Entity" />
+        <node id="7" name="База данных" type="Storage" />
+        <node id="8" name="Получить данные" type="Function" />
+      </nodes>
+      <flows>
+        <flow data="данные" src_id="7" dest_id="8"/>
+        <flow data="данные" src_id="8" dest_id="0"/>
+        <flow data="запросы" src_id="0" dest_id="8"/>
+        <flow data="данные" src_id="5" dest_id="6"/>
+        <flow data="результат" src_id="6" dest_id="5"/>
+        <flow data="данные" src_id="0" dest_id="5"/>
+        <flow data="результат расчетов" src_id="5" dest_id="0"/>
+        <flow data="правила" src_id="0" dest_id="3"/>
+        <flow data="трасса вывода" src_id="0" dest_id="3"/>
+        <flow data="объяснения" src_id="3" dest_id="4"/>
+        <flow data="факты" src_id="1" dest_id="0"/>
+        <flow data="результат вывода" src_id="0" dest_id="2"/>
+        <flow data="данные" src_id="4" dest_id="1"/>
+        <flow data="рекомендации" src_id="2" dest_id="4"/>
+      </flows>
+      <fragments>
+        <fragment id="0" name="Основной" primary="1">
+          <nodes>
+            <node_ref id="0"/>
+            <node_ref id="1"/>
+            <node_ref id="2"/>
+          </nodes>
+          <documents>
+            <document id="0" name="Поле знаний" extension="kbs"/>
+            <document id="1" name="Протокол верификации" extension="log"/>
+            <document id="2" name="База знаний"  extension="kbs"/>
+            <document id="4" name="Протокол интервьюирования" extension="log"/>
+            <document id="5" name="Сценарий диалога" extension="dsf"/>
+          </documents>
+        </fragment>
+        <fragment id="1" name="Интеграция с ППП" primary="0">
+          <nodes>
+            <node_ref id="5"/>
+            <node_ref id="6"/>
+          </nodes>
+        </fragment>
+        <fragment id="2" name="Интеграция с БД" primary="0">
+          <nodes>
+            <node_ref id="7"/>
+            <node_ref id="8"/>
+          </nodes>
+        </fragment>
+        <fragment id="3" name="Объяснения" primary="0">
+          <nodes>
+            <node_ref id="3"/>
+          </nodes>
+        </fragment>
+      </fragments>
+      <network>
+        <task id="0" fragment_id="0" name="Приобретение знаний" stage="Анализ системных требований" executor="ruc1">
+          <output>
+            <document id="4"/>
+            <document id="0"/>
+          </output>
+        </task>
+        <task id="1" fragment_id="0" name="Конвертация ПЗ в БЗ" stage="Анализ системных требований" executor="ATVerifier">
+          <predcessors>
+            <predcessor id="0"/>
+          </predcessors>
+          <input>
+            <document id="0"/>
+          </input>
+          <output>
+            <document id="1"/>
+            <document id="2"/>
+          </output>
+        </task>
+        <task id="2" fragment_id="0" name="Формирование средств вывода" stage="Проектирование" executor="configurator">
+          <predcessors>
+            <predcessor id="1"/>
+          </predcessors>
+        </task>
+        <task id="3" fragment_id="2" name="Разработка структуры БД" stage="Проектирование" executor="db_designer">
+          <predcessors>
+            <predcessor id="0"/>
+          </predcessors>
+        </task>
+        <task id="4" fragment_id="2" name="Разработка формата обмена данных" stage="Проектирование" executor="db_designer">
+          <predcessors>
+            <predcessor id="3"/>
+          </predcessors>
+        </task>
+        <task id="5" fragment_id="2" name="Настройка СУБД" stage="Реализация" executor="db_designer">
+          <predcessors>
+            <predcessor id="4"/>
+          </predcessors>
+        </task>
+        <task id="6" fragment_id="1" name="Разработка формата обмена данных" stage="Проектирование" executor="app_integrator">
+          <predcessors>
+            <predcessor id="0"/>
+          </predcessors>
+        </task>
+        <task id="7" fragment_id="1" name="Подключение библиотеки ППП" stage="Реализация" executor="app_integrator">
+          <predcessors>
+            <predcessor id="6"/>
+          </predcessors>
+        </task>
+        <task id="8" fragment_id="3" name="Дизайн объяснений" stage="Реализация" executor="at_explainer">
+          <predcessors>
+            <predcessor id="2"/>
+          </predcessors>
+        </task>
+        <task id="9" fragment_id="3" name="Настройка объяснительного компонента" stage="Реализация" executor="at_explainer">
+          <predcessors>
+            <predcessor id="8"/>
+          </predcessors>
+        </task>
+        <task id="10" fragment_id="0" name="Конфигурация компонентов ядра ИЭС" stage="Реализация" executor="configurator">
+          <predcessors>
+            <predcessor id="2"/>
+            <predcessor id="7"/>
+          </predcessors>
+        </task>
+        <task id="11" fragment_id="0" name="Написание сценария диалога" stage="Реализация" executor="dsf_editor">
+          <predcessors>
+            <predcessor id="10"/>
+            <predcessor id="5"/>
+          </predcessors>
+          <input>
+            <document id="2"/>
+          </input>
+          <output>
+            <document id="5"/>
+          </output>
+        </task>
+        <task id="12" fragment_id="0" name="Тестирование" stage="Тестирование" executor="tester">
+          <predcessors>
+            <predcessor id="11"/>
+            <predcessor id="9"/>
+          </predcessors>
+        </task>
+      </network>
+    </procedure>
+    <procedure name="Построение динамической ИЭС">
+        <nodes>
+            <node id="0" name="Динамическая НФ-операция" type="NFFunction" />
+            <node id="1" name="Задать начальную ситуацию" type="Function" />
+            <node id="2" name="Отобразить рекомендации" type="Function" />
+            <node id="3" name="Объяснить" type="Function" />
+            <node id="4" name="Пользователь" type="Entity" />
+            <node id="5" name="Выполнить расчет" type="Function" />
+            <node id="6" name="Пакет прикладных программ" type="Entity" />
+            <node id="7" name="База данных" type="Storage" />
+            <node id="8" name="Получить данные" type="Function" />
+            <node id="9" name="Датчик" type="Entity" />
+            <node id="10" name="Получить показания" type="Function" />
+            <node id="11" name="Имитационная модель" type="Entity" />
+            <node id="12" name="Управлять ИМ" type="Function" />
+            <node id="13" name="Визуализировать ИМ" type="Function" />
+        </nodes>
+        <flows>
+            <flow data="данные" src_id="7" dest_id="8"/>
+            <flow data="данные" src_id="8" dest_id="0"/>
+            <flow data="запросы" src_id="0" dest_id="8"/>
+            <flow data="данные" src_id="5" dest_id="6"/>
+            <flow data="результат" src_id="6" dest_id="5"/>
+            <flow data="данные" src_id="0" dest_id="5"/>
+            <flow data="результат расчетов" src_id="5" dest_id="0"/>
+            <flow data="правила" src_id="0" dest_id="3"/>
+            <flow data="трасса вывода" src_id="0" dest_id="3"/>
+            <flow data="объяснения" src_id="3" dest_id="4"/>
+            <flow data="факты" src_id="1" dest_id="0"/>
+            <flow data="результат вывода" src_id="0" dest_id="2"/>
+            <flow data="данные" src_id="4" dest_id="1"/>
+            <flow data="рекомендации" src_id="2" dest_id="4"/>
+            <flow data="показания" src_id="9" dest_id="10"/>
+            <flow data="преобразованные данные" src_id="10" dest_id="0"/>
+            <flow data="действия" src_id="4" dest_id="12"/>
+            <flow data="динамическое изображение" src_id="13" dest_id="4"/>
+            <flow data="команды" src_id="12" dest_id="11"/>
+            <flow data="состояние" src_id="11" dest_id="13"/>
+            <flow data="набор параметров" src_id="11" dest_id="0"/>
+        </flows>
+        <fragments>
+            <fragment id="0" name="Основной" primary="1">
+              <nodes>
+                <node_ref id="0"/>
+                <node_ref id="1"/>
+                <node_ref id="2"/>
+                <node_ref id="11"/>
+                <node_ref id="12"/>
+                <node_ref id="13"/>
+              </nodes>
+              <documents>
+                <document id="0" name="База Данных" extension="db"/>
+                <document id="1" name="Фрагмент Поля Знаний" extension="json"/>
+              </documents>
+            </fragment>
+            <fragment id="1" name="Интеграция с ППП" primary="0">
+              <nodes>
+                <node_ref id="5"/>
+                <node_ref id="6"/>
+              </nodes>
+            </fragment>
+            <fragment id="2" name="Интеграция с БД" primary="0">
+              <nodes>
+                <node_ref id="7"/>
+                <node_ref id="8"/>
+              </nodes>
+            </fragment>
+            <fragment id="3" name="Объяснения" primary="0">
+              <nodes>
+                <node_ref id="3"/>
+              </nodes>
+            </fragment>
+            <fragment id="4" name="Интеграция с датчиком" primary="0">
+                <nodes>
+                    <node_ref id="9"/>
+                    <node_ref id="10"/>
+                </nodes>
+            </fragment>
+        </fragments>
+        <network>
+            <task id="0" fragment_id="0" name="Приобретение знаний" stage="Анализ системных требований" executor="ruc1">
+              <!--><output>
+                <document id="4"/>
+                <document id="0"/>
+              </output></!-->
+            </task>
+            <task id="1" fragment_id="0" name="Конвертация ПЗ в БЗ" stage="Анализ системных требований" executor="at_verifier">
+              <predcessors>
+                <predcessor id="18"/>
+              </predcessors>
+              <!--><input>
+                <document id="0"/>
+              </input>
+              <output>
+                <document id="1"/>
+                <document id="2"/>
+              </output></!-->
+            </task>
+            <task id="2" fragment_id="0" name="Формирование средств вывода" stage="Проектирование" executor="configurator">
+              <predcessors>
+                <predcessor id="1"/>
+              </predcessors>
+            </task>
+            <task id="3" fragment_id="2" name="Разработка структуры БД" stage="Проектирование" executor="db_designer">
+              <predcessors>
+                <predcessor id="0"/>
+              </predcessors>
+            </task>
+            <task id="4" fragment_id="2" name="Разработка формата обмена данных" stage="Проектирование" executor="db_designer">
+              <predcessors>
+                <predcessor id="3"/>
+              </predcessors>
+            </task>
+            <task id="5" fragment_id="4" name="Разработка формата обмена данных" stage="Проектирование" executor="app_integrator">
+              <predcessors>
+                <predcessor id="2"/>
+              </predcessors>
+            </task>
+            <task id="6" fragment_id="1" name="Разработка формата обмена данных" stage="Проектирование" executor="hardware_integrator">
+              <predcessors>
+                <predcessor id="0"/>
+              </predcessors>
+            </task>
+            <task id="7" fragment_id="2" name="Настройка СУБД" stage="Реализация" executor="db_designer">
+              <predcessors>
+                <predcessor id="4"/>
+              </predcessors>
+            </task>
+            <task id="8" fragment_id="1" name="Подключение библиотеки ППП" stage="Реализация" executor="app_integrator">
+              <predcessors>
+                <predcessor id="6"/>
+              </predcessors>
+            </task>
+            <task id="9" fragment_id="3" name="Дизайн объяснений" stage="Реализация" executor="at_explainer">
+              <predcessors>
+                <predcessor id="1"/>
+              </predcessors>
+            </task>
+            <task id="10" fragment_id="3" name="Настройка объяснительного компонента" stage="Реализация" executor="at_explainer">
+              <predcessors>
+                <predcessor id="9"/>
+              </predcessors>
+            </task>
+            <task id="11" fragment_id="4" name="Настройка драйвера" stage="Реализация" executor="hardware_integrator">
+                <predcessors>
+                    <predcessor id="5"/>
+                </predcessors>
+            </task>
+            <task id="12" fragment_id="0" name="Построение ИМ" stage="Реализация" executor="im_designer">
+                <predcessors>
+                    <predcessor id="0"/>
+                </predcessors>
+            </task>
+            <task id="13" fragment_id="0" name="Разработка визуальной составляющей ИМ" stage="Реализация" executor="im_designer">
+                <predcessors>
+                    <predcessor id="12"/>
+                </predcessors>
+            </task>
+            <task id="14" fragment_id="0" name="Конфигурация компонентов ядра ИЭС" stage="Реализация" executor="configurator">
+              <predcessors>
+                <predcessor id="2"/>
+                <predcessor id="13"/>
+              </predcessors>
+            </task>
+            <task id="15" fragment_id="0" name="Написание сценария диалога" stage="Реализация" executor="dsf_editor">
+              <predcessors>
+                <predcessor id="14"/>
+                <predcessor id="7"/>
+                <predcessor id="8"/>
+              </predcessors>
+              <!--><input>
+                <document id="2"/>
+              </input>
+              <output>
+                <document id="5"/>
+              </output> </!-->
+            </task>
+            <task id="16" fragment_id="0" name="Отладка ИМ" stage="Тестирование" executor="tester">
+                <predcessors>
+                    <predcessor id="13"/>
+                </predcessors>
+            </task>
+            <task id="17" fragment_id="0" name="Комплексное тестирование" stage="Тестирование" executor="tester">
+              <predcessors>
+                <predcessor id="11"/>
+                <predcessor id="10"/>
+                <predcessor id="16"/>
+                <predcessor id="15"/>
+              </predcessors>
+            </task>
+            <task id="18" fragment_id="0" name="Извлечение знаний из БД" stage="Анализ системных требований" executor="data_mining">
+                <output>
+                    <document id="1"/>
+                </output>
+            </task>
+            <task id="19" fragment_id="0" name="Объединение фрагментов ПЗ" stage="Анализ системных требований" executor="merger">
+            </task>
+        </network>
+    </procedure>
+       <procedure name="Построение обучающей ИЭС">
+      <nodes>
+        <!--><node id="31" name="создать &quot;тренинг с ИЭС&quot;" type="NFFunction" />
+	<node id="32" name="Реализовать обучающее воздействие типа &quot;тренинг с ИЭС&quot;" type="NFFunction" />
+
+	<node id="21" name="создать УТЗ" type="Function" />
+	<node id="22" name="создать ГТ-учебник" type="Function" />
+	<node id="23" name="сформировать вопросы к элементам курса/дисциплины" type="Function" />
+	<node id="24" name="построить структуру курса/дисциплины" type="Function" />
+	<node id="25" name="реализовать адаптивный метод репертуарных решеток" type="Function" />
+	<node id="26" name="построить модели целевых компетенций" type="Function" />
+	<node id="27" name="определить связи между элементами и компетенциями" type="Function" />
+	<node id="28" name="Контролировать учетную информацию" type="Function" />
+	<node id="29" name="Сформировать ведомости" type="Function" />
+	<node id="210" name="Провести аналитико-статистическую обработку" type="Function" />
+	<node id="211" name="реализовать план обучения" type="Function" />
+	<node id="212" name="сформировать обучающие воздействия" type="Function" />
+	<node id="213" name="сформировать стратегию(план) обучения" type="Function" />
+	<node id="214" name="читать ГТ-учебник" type="Function" />
+	<node id="215" name="реализовать обучающее воздействие типа УТЗ" type="Function" />
+	<node id="216" name="выявить уровень умений" type="Function" />
+	<node id="217" name="выявить уровень знаний" type="Function" />
+	<node id="218" name="построить психологический портрет" type="Function" />
+	<node id="219" name="создать онтологию курса/дисциплины" type="Function" />
+	<node id="220" name="построить модель обучения" type="Function" />
+	<node id="221" name="мониторить процесс функционирования ИЭС" type="Function" />
+	<node id="222" name="построить модель обучаемого" type="Function" />
+
+        <node id="11" name="БД онтологий" type="Storage" />
+        <node id="12" name="БД обучающих воздействий" type="Storage" />
+        <node id="13" name="БД контрольных мероприятий" type="Storage" />
+        <node id="14" name="БД обучаемых" type="Storage" />
+        <node id="15" name="БД планов обучения" type="Storage" />
+        <node id="16" name="база психологических тестов" type="Storage" />
+
+        <node id="41" name="Преподаватель" type="Entity" />
+        <node id="42" name="Обучаемый" type="Entity" /><!-->
+	<node id="41" name="Преподаватель" type="Entity" />
+        <node id="42" name="Обучаемый" type="Entity" />
+	
+	<node id="223" name="сформировать психологические тесты" type="Function" />
+	<node id="23" name="сформировать вопросы к элементам курса/дисциплины" type="Function" />
+	<node id="219" name="создать онтологию курса/дисциплины" type="Function" />
+
+        <node id="11" name="БД онтологий" type="Storage" />
+        <node id="13" name="БД контрольных мероприятий" type="Storage" />
+        <node id="16" name="БД психологических тестов" type="Storage" />
+
+        <node id="0" name="НФ-операция" type="NFFunction" />
+	
+      </nodes>
+      <flows>
+	<flow data="запрос" src_id="41" dest_id="223"/>
+	<flow data="знания" src_id="41" dest_id="0"/>
+	<flow data="запрос" src_id="41" dest_id="23"/>
+	<flow data="запрос" src_id="41" dest_id="219"/>
+	<flow data="данные" src_id="223" dest_id="16"/>
+	<flow data="данные" src_id="23" dest_id="13"/>
+	<flow data="структура онтологии курса" src_id="11" dest_id="23"/>
+	<flow data="данные" src_id="219" dest_id="11"/>
+      </flows>
+      <fragments>
+        <fragment id="0" name="Основной" primary="1">
+          <nodes>
+        	<node_ref id="0"/>
+        	<node_ref id="41"/>
+		<node_ref id="219"/>
+		<node_ref id="11"/>
+          </nodes>
+        </fragment>
+        <fragment id="1" name="Вопросы" primary="0">
+          <nodes>
+        	<node_ref id="41"/>
+		<node_ref id="11"/>
+		<node_ref id="23"/>
+		<node_ref id="13"/>
+          </nodes>
+	</fragment>
+        <fragment id="2" name="Психтесты" primary="0">
+          <nodes>
+        	<node_ref id="41"/>
+		<node_ref id="223"/>
+		<node_ref id="16"/>
+          </nodes>
+        </fragment>
+      </fragments>
+      <network>
+        <task id="0" fragment_id="0" name="ruc1" stage="Построение онтологии курса/дисциплины" executor="ruc1">
+        </task>
+	<task id="10" fragment_id="0" name="ruc2" stage="Построение онтологии курса/дисциплины" executor="ruc2">
+        </task>
+	<task id="11" fragment_id="0" name="KMPZ" stage="Построение онтологии курса/дисциплины" executor="KMPZ">
+        </task>
+
+	<task id="1" fragment_id="1" name="Задать параметры для генерации тестов" stage="Реализация модели обучения" executor="ruc3">
+          <predcessors>
+            <predcessor id="0"/>
+          </predcessors>
+        </task>
+	<task id="2" fragment_id="2" name="Задать параметры для генерации психологических тестов" stage="Реализация модели обучения" executor="ruc4">
+	  <predcessors>
+            <predcessor id="0"/>
+          </predcessors>
+        </task>
+	<!--><task id="1" fragment_id="0" name="Конвертация ПЗ в БЗ" stage="Анализ системных требований" executor="at_verifier">
+          <predcessors>
+            <predcessor id="0"/>
+          </predcessors>
+	  <input>
+            <document id="0"/>
+          </input>
+	  <output>
+            <document id="1"/>
+            <document id="2"/>
+          </output>
+        </task>
+	<task id="2" fragment_id="1" name="ПИК 1" stage="Пробные ПИКи" executor="ruc1">
+        
+        </task>
+	<task id="3" fragment_id="1" name="ПИК 2" stage="Пробные ПИКи" executor="ruc2">
+         
+        </task>
+	<task id="4" fragment_id="1" name="Построение модели обучения" stage="Проектирование" executor="KMPZ">
+          <predcessors>
+            <predcessor id="2"/>
+          </predcessors>
+        </task>
+	<task id="5" fragment_id="1" name="Конвертация ПЗ в БЗ" stage="Проектирование" executor="ATVerifier">
+          <predcessors>
+            <predcessor id="2"/>
+          </predcessors>
+        </task>
+	<task id="6" fragment_id="1" name="Конфигурирование компонентов" stage="Проектирование" executor="tester">
+          <predcessors>
+            <predcessor id="2"/>
+          </predcessors>
+        </task>
+	<task id="7" fragment_id="3" name="Создание пользовательского интерфейса" stage="Реализация" executor="tester">
+          <predcessors>
+            <predcessor id="9"/>
+          </predcessors>
+        </task>
+	<task id="8" fragment_id="3" name="Интеграция с внешними системами" stage="Реализация" executor="tester">
+          <predcessors>
+            <predcessor id="10"/>
+          </predcessors>
+        </task>
+	<task id="9" fragment_id="3" name="Общая интеграция компонентов" stage="Реализация" executor="tester">
+          <predcessors>
+            <predcessor id="11"/>
+          </predcessors>
+        </task>
+	<task id="10" fragment_id="3" name="Тестирование" stage="Тестирование" executor="tester">
+          <predcessors>
+            <predcessor id="12"/>
+          </predcessors>
+        </task><!-->
+      </network>
+    </procedure>
+  </procedures>
+</document>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <Elements>
+    <elem name="Динамическая НФ-операция" xPos="359" yPos="389" type="3" detal="false" id="1"/>
+    <elem name="База данных" xPos="353" yPos="169" type="1" detal="false" id="2"/>
+    <elem name="Получить данные" xPos="357" yPos="279" type="2" detal="false" id="3"/>
+    <elem name="Выполнить расчет" xPos="586" yPos="389" type="2" detal="false" id="4"/>
+    <elem name="Пакет прикладных программ" xPos="562" yPos="245" type="0" detal="false" id="5"/>
+    <elem name="Отобразить рекомендации" xPos="429" yPos="677" type="2" detal="false" id="6"/>
+    <elem name="Задать начальную ситуацию" xPos="308" yPos="596" type="2" detal="false" id="7"/>
+    <elem name="Пользователь" xPos="1" yPos="668" type="0" detal="false" id="8"/>
+    <elem name="Объяснить" xPos="32" yPos="321" type="2" detal="false" id="9"/>
+    <elem name="Получить показания" xPos="536" yPos="501" type="2" detal="false" id="10"/>
+    <elem name="Датчик" xPos="685" yPos="595" type="0" detal="false" id="11"/>
+    <elem name="Имитационная модель" xPos="189" yPos="417" type="0" detal="false" id="12"/>
+    <elem name="Управлять ИМ" xPos="189" yPos="537" type="2" detal="false" id="13"/>
+    <elem name="Визуализировать ИМ" xPos="79" yPos="537" type="2" detal="false" id="14"/>
+  </Elements>
+  <Connections>
+    <con name="1" dest_id="10" source_id="11">
+      <std name="std" std="true" std1="показания" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="1" dest_id="1" source_id="10">
+      <std name="std" std="true" std1="преобразованные данные" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="1" dest_id="4" source_id="5">
+      <std name="std" std="true" std1="результат" std_number="1"/>
+      <dts name="dts" dts="true" dts1="данные" dts_number="1"/>
+    </con>
+    <con name="1" dest_id="1" source_id="4">
+      <std name="std" std="true" std1="результат" std_number="1"/>
+      <dts name="dts" dts="true" dts1="данные" dts_number="1"/>
+    </con>
+    <con name="1" source_id="2" dest_id="3">
+      <std name="std" std="true" std1="данные" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="1" dest_id="1" source_id="3">
+      <std name="std" std="true" std1="данные" std_number="1"/>
+      <dts name="dts" dts="true" dts1="запрос" dts_number="1"/>
+    </con>
+    <con name="1" dest_id="1" source_id="9">
+      <std name="std" std="false"/>
+      <dts name="dts" dts="true" dts1="трасса вывода" dts2="правила" dts_number="2"/>
+    </con>
+    <con name="1" source_id="8" dest_id="9">
+      <std name="std" std="false"/>
+      <dts name="dts" dts="true" dts1="объяснения" dts_number="1"/>
+    </con>
+    <con name="1" dest_id="1" source_id="6">
+      <std name="std" std="false"/>
+      <dts name="dts" dts="true" dts1="Результат вывода" dts_number="1"/>
+    </con>
+    <con name="1" dest_id="1" source_id="7">
+      <std name="std" std="true" std1="факты" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="1" dest_id="1" source_id="12">
+      <std name="std" std="true" std1="набор параметров" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="1" dest_id="12" source_id="13">
+      <std name="std" std="true" std1="команды" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="1" dest_id="12" source_id="14">
+      <std name="std" std="false"/>
+      <dts name="dts" dts="true" dts1="состояние" dts_number="1"/>
+    </con>
+    <con name="1" source_id="8" dest_id="14">
+      <std name="std" std="false"/>
+      <dts name="dts" dts="true" dts1="динамическое изображение" dts_number="1"/>
+    </con>
+    <con name="1" source_id="8" dest_id="13">
+      <std name="std" std="true" std1="действия" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="1" dest_id="6" source_id="8">
+      <std name="std" std="false"/>
+      <dts name="dts" dts="true" dts1="рекомендации" dts_number="1"/>
+    </con>
+    <con name="1" dest_id="7" source_id="8">
+      <std name="std" std="true" std1="данные" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+  </Connections>
+</root>

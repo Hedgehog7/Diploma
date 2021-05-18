@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<document>
+  <Elements>
+    <elem name="&#x421;&#x442;&#x430;&#x442;&#x438;&#x447;&#x435;&#x441;&#x43A;&#x430;&#x44F; &#x41D;&#x424;-&#x43E;&#x43F;&#x435;&#x440;&#x430;&#x446;&#x438;&#x44F;" xPos="366" yPos="388" type="3" detal="false" id="1"/>
+    <elem name="&#x411;&#x430;&#x437;&#x430; &#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x445;" xPos="350" yPos="158" type="1" detal="false" id="2"/>
+    <elem name="&#x41F;&#x43E;&#x43B;&#x443;&#x447;&#x438;&#x442;&#x44C; &#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x435;" xPos="372" yPos="267" type="2" detal="false" id="3"/>
+    <elem name="&#x412;&#x44B;&#x43F;&#x43E;&#x43B;&#x43D;&#x438;&#x442;&#x44C; &#x440;&#x430;&#x441;&#x447;&#x435;&#x442;" xPos="585" yPos="390" type="2" detal="false" id="4"/>
+    <elem name="&#x41F;&#x430;&#x43A;&#x435;&#x442; &#x43F;&#x440;&#x438;&#x43A;&#x43B;&#x430;&#x434;&#x43D;&#x44B;&#x445; &#x43F;&#x440;&#x43E;&#x433;&#x440;&#x430;&#x43C;&#x43C;" xPos="728" yPos="245" type="0" detal="false" id="5"/>
+    <elem name="Отобразить рекомендации" xPos="481" yPos="553" type="2" detal="false" id="6"/>
+    <elem name="&#x417;&#x430;&#x434;&#x430;&#x442;&#x44C; &#x43D;&#x430;&#x447;&#x430;&#x43B;&#x44C;&#x43D;&#x443;&#x44E; &#x441;&#x438;&#x442;&#x443;&#x430;&#x446;&#x438;&#x44E;" xPos="300" yPos="507" type="2" detal="false" id="7"/>
+    <elem name="&#x41F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x442;&#x435;&#x43B;&#x44C;" xPos="313" yPos="663" type="0" detal="false" id="8"/>
+    <elem name="&#x41E;&#x431;&#x44A;&#x44F;&#x441;&#x43D;&#x438;&#x442;&#x44C;" xPos="73" yPos="444" type="2" detal="false" id="9"/>
+  </Elements>
+  <Connections>
+    <con name="db_to_receive_data" source_id="2" dest_id="3">
+      <std name="std" std="true" std1="&#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x435;" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="receive_data_to_nf_op" dest_id="1" source_id="3">
+      <std name="std" std="true" std1="&#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x435;" std_number="1"/>
+      <dts name="dts" dts="true" dts1="&#x437;&#x430;&#x43F;&#x440;&#x43E;&#x441;&#x44B;" dts_number="1"/>
+    </con>
+    <con name="calculate_to_app" source_id="4" dest_id="5">
+      <std name="std" std="true" std1="&#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x435;" std_number="1"/>
+      <dts name="dts" dts="true" dts1="&#x440;&#x435;&#x437;&#x443;&#x43B;&#x44C;&#x442;&#x430;&#x442;" dts_number="1"/>
+    </con>
+    <con name="nf_op_to_calculate" source_id="1" dest_id="4">
+      <std name="std" std="true" std1="&#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x435;" std_number="1"/>
+      <dts name="dts" dts="true" dts1="&#x440;&#x435;&#x437;&#x443;&#x43B;&#x44C;&#x442;&#x430;&#x442; &#x440;&#x430;&#x441;&#x447;&#x435;&#x442;&#x430;" dts_number="1"/>
+    </con>
+    <con name="nf_op_to_explain" source_id="1" dest_id="9">
+      <std name="std" std="true" std1="&#x43F;&#x440;&#x430;&#x432;&#x438;&#x43B;&#x430;" std2="&#x442;&#x440;&#x430;&#x441;&#x441;&#x430; &#x432;&#x44B;&#x432;&#x43E;&#x434;&#x430;" std_number="2"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="explain_to_user" dest_id="8" source_id="9">
+      <std name="std" std="true" std1="&#x43E;&#x431;&#x44A;&#x44F;&#x441;&#x43D;&#x435;&#x43D;&#x438;&#x44F;" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="setup_to_nf_op" dest_id="1" source_id="7">
+      <std name="std" std="true" std1="&#x444;&#x430;&#x43A;&#x442;&#x44B;" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="nf_op_to_recommendations" source_id="1" dest_id="6">
+      <std name="std" std="true" std1="&#x440;&#x435;&#x437;&#x443;&#x43B;&#x44C;&#x442;&#x430;&#x442; &#x432;&#x44B;&#x432;&#x43E;&#x434;&#x430;" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="user_to_setup" dest_id="7" source_id="8">
+      <std name="std" std="true" std1="&#x434;&#x430;&#x43D;&#x43D;&#x44B;&#x435;" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="recommendations_to_user" source_id="6" dest_id="8">
+      <std name="std" std="true" std1="рекомендации" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+  </Connections>
+</document>

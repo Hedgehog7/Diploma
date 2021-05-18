@@ -1,0 +1,32 @@
+encoding "utf8";
+
+import "kwtypes.proto";
+import "articles_base.proto";
+
+day "понедельник" {
+	key = "понедельник"
+}
+
+day "вторник" {
+	key = "вторник"
+}
+
+day "среда" {
+	key = "среда"
+}
+
+day "четверг" {
+	key = "четверг"
+}
+
+day "пятница" {
+	key = "пятница"
+}
+
+day "суббота" {
+	key = "суббота"
+}
+
+day "воскресенье" {
+	key = "воскресенье"
+}

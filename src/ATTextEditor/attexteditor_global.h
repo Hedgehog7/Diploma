@@ -1,0 +1,12 @@
+#ifndef ATTEXTEDITOR_GLOBAL_H
+#define ATTEXTEDITOR_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#ifdef ATTEXTEDITOR_LIB
+# define ATTEXTEDITOR_EXPORT Q_DECL_EXPORT
+#else
+# define ATTEXTEDITOR_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // ATTEXTEDITOR_GLOBAL_H

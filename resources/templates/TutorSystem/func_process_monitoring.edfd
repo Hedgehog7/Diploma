@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <Elements>
+    <elem name="Контролировать учетную информацию" xPos="308" yPos="32" type="2" detal="false" id="1"/>
+    <elem name="Преподаватель" xPos="81" yPos="151" type="0" detal="false" id="2"/>
+    <elem name="Сформировать ведомости" xPos="296" yPos="145" type="2" detal="false" id="3"/>
+    <elem name="Провести аналитико-статистическую обработку" xPos="312" yPos="301" type="2" detal="false" id="4"/>
+    <elem name="БД обучаемых" xPos="542" yPos="147" type="1" detal="false" id="5"/>
+  </Elements>
+  <Connections>
+    <con name="con" source_id="2" dest_id="3">
+      <std name="std" std="true" std1="запрос" std_number="1"/>
+      <dts name="dts" dts="true" dts1="ведомость" dts_number="1"/>
+    </con>
+    <con name="con" source_id="2" dest_id="4">
+      <std name="std" std="true" std1="запрос" std_number="1"/>
+      <dts name="dts" dts="true" dts1="графики" dts2="таблицы" dts3="отчеты" dts_number="3"/>
+    </con>
+    <con name="con" dest_id="3" source_id="5">
+      <std name="std" std="true" std1="модели обучаемых" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" dest_id="4" source_id="5">
+      <std name="std" std="true" std1="модели обучаемых" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" source_id="1" dest_id="5">
+      <std name="std" std="true" std1="записи таблицы пользователей" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" dest_id="1" source_id="2">
+      <std name="std" std="true" std1="данные обучаемых" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+  </Connections>
+</root>

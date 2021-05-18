@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <Elements>
+    <elem name="Преподаватель" xPos="97" yPos="35" type="0" detal="false" id="1"/>
+    <elem name="сформировать вопросы к элементам курса/дисциплины" xPos="41" yPos="632" type="2" detal="false" id="2"/>
+    <elem name="построить структуру курса/дисциплины" xPos="364" yPos="380" type="2" detal="false" id="3"/>
+    <elem name="БД контрольных мероприятий" xPos="109" yPos="1023" type="1" detal="false" id="4"/>
+    <elem name="реализовать адаптивный метод репертуарных решеток" xPos="1410" yPos="31" type="2" detal="false" id="5"/>
+    <elem name="БД онтологий" xPos="1377" yPos="694" type="1" detal="false" id="6"/>
+    <elem name="построить модели целевых компетенций" xPos="1030" yPos="250" type="2" detal="false" id="7"/>
+    <elem name="определить связи между элементами и компетенциями" xPos="740" yPos="190" type="2" detal="false" id="8"/>
+  </Elements>
+  <Connections>
+    <con name="con" source_id="1" dest_id="3">
+      <std name="std" std="true" std1="знания,опыт" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" source_id="1" dest_id="2">
+      <std name="std" std="true" std1="знания" std2="опыт" std_number="2"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" source_id="2" dest_id="4">
+      <std name="std" std="true" std1="вопросы для выявления знаний" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" source_id="1" dest_id="5">
+      <std name="std" std="true" std1="smth" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" dest_id="2" source_id="6">
+      <std name="std" std="true" std1="иерархическая структура курса" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" source_id="5" dest_id="6">
+      <std name="std" std="true" std1="связи между элементами" std_number="1"/>
+      <dts name="dts" dts="true" dts1="онтология" dts_number="1"/>
+    </con>
+    <con name="con" dest_id="6" source_id="8">
+      <std name="std" std="true" std1="связи элементов и компетенций" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" source_id="3" dest_id="6">
+      <std name="std" std="true" std1="структура курса" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" dest_id="6" source_id="7">
+      <std name="std" std="true" std1="модель целевых компетенций" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+  </Connections>
+</root>

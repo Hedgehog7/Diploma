@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <Elements>
+    <elem name="создать онтологию курса/дисциплины" xPos="29" yPos="126" type="2" detal="true" id="1" detal_doc_name="create_ontology.edfd"/>
+    <elem name="БД контрольных мероприятий" xPos="191" yPos="215" type="1" detal="false" id="2"/>
+    <elem name="построить модель обучения" xPos="328" yPos="124" type="2" detal="true" id="3" detal_doc_name="learning_model.edfd"/>
+    <elem name="Преподаватель" xPos="24" yPos="357" type="0" detal="false" id="4"/>
+    <elem name="мониторить процесс функционирования ИЭС" xPos="241" yPos="507" type="2" detal="true" id="5" detal_doc_name="func_process_monitoring.edfd"/>
+    <elem name="БД обучаемых" xPos="372" yPos="283" type="1" detal="false" id="6"/>
+    <elem name="БД онтологий" xPos="623" yPos="65" type="1" detal="false" id="7"/>
+    <elem name="построить модель обучаемого" xPos="460" yPos="440" type="2" detal="true" id="8" detal_doc_name="student_model.edfd"/>
+    <elem name="обучаемый" xPos="658" yPos="493" type="0" detal="false" id="9"/>
+  </Elements>
+  <Connections>
+    <con name="con" dest_id="8" source_id="9">
+      <std name="std" std="true" std1="умения" std2="знания" std3="псих-тесты" std_number="3"/>
+      <dts name="dts" dts="true" dts1="тесты" dts2="задания" dts_number="2"/>
+    </con>
+    <con name="con" source_id="7" dest_id="8">
+      <std name="std" std="true" std1="онтология" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" dest_id="3" source_id="7">
+      <std name="std" std="true" std1="онтология" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" dest_id="3" source_id="6">
+      <std name="std" std="true" std1="модель обучаемого" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" dest_id="6" source_id="8">
+      <std name="std" std="true" std1="модель обучаемого" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" source_id="4" dest_id="5">
+      <std name="std" std="true" std1="данные об обучаемых" std_number="1"/>
+      <dts name="dts" dts="true" dts1="данные мониторинга" dts_number="1"/>
+    </con>
+    <con name="con" dest_id="1" source_id="4">
+      <std name="std" std="true" std1="знания" std2="опыт" std_number="2"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" source_id="1" dest_id="2">
+      <std name="std" std="true" std1="тесты" std2="варианты" std_number="2"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" dest_id="5" source_id="6">
+      <std name="std" std="true" std1="модели обучаемых" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" source_id="2" dest_id="8">
+      <std name="std" std="true" std1="контрольные варианты" std2="задания" std_number="2"/>
+      <dts name="dts" dts="false"/>
+    </con>
+    <con name="con" source_id="1" dest_id="7">
+      <std name="std" std="true" std1="онтология" std_number="1"/>
+      <dts name="dts" dts="false"/>
+    </con>
+  </Connections>
+</root>

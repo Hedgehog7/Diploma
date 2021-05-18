@@ -1,0 +1,71 @@
+procedure Main
+    call new_question
+end
+
+procedure new_question
+    form question_answer
+    connect next can_make_conclusion
+    text question_label "Сформулируйте вопрос по поводу состояния пациента так, как будто Вы спрашиваете пациента:"
+    text answer_label "Сформулируйте возможный вариант ответа пациента на данный вопрос:"
+    param debug true
+    #connect visualise visualisation
+    #connect fuzzy fuzzy
+    #connect temporal temporal_new_question
+end
+
+procedure extra_answer    
+    form question_answer
+    connect next can_make_conclusion
+    text answer_label "Сформулируйте еще один возможный вариант ответа пациента на данный вопрос"
+    text question_label "Заданный вами вопрос по поводу состояния пациента"
+    param previous_question true
+    param show_previous_answers true
+    param new_question false
+    #connect visualise visualisation
+    #connect fuzzy fuzzy
+    #connect temporal temporal
+end
+
+procedure can_make_conclusion
+    form can_make_conclusion
+    connect yes conclusion
+    connect no new_question
+    text conclusion_label "Можете ли вы сделать заключение о состоянии пациента?"
+    text question_label "Вопрос"
+    text answer_label "Ответ"
+    #connect visualise visualisation    
+end
+
+procedure can_make_another_conclusion
+    form can_make_conclusion
+    connect yes conclusion
+    connect no has_other_answer
+    param remove_condition true
+    text conclusion_label "Можете ли вы сделать eще одно заключение?"
+    text question_label "Вопрос"
+    text answer_label "Ответ"
+    #connect visualise visualisation    
+end
+
+procedure clearifying_information
+    form clearifying_information
+    connect input conclusion
+    #connect visualise visualisation
+end
+
+procedure conclusion
+    form conclusion
+    connect input can_make_another_conclusion
+    #connect visualise visualisation
+    connect abort has_other_answer
+    #connect fuzzy fuzzy
+    connect temporal temporal_conclusion
+end
+
+procedure has_other_answer
+    form has_other_answer
+    connect yes extra_answer
+    connect no has_other_answer 
+end
+
+

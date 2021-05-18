@@ -1,0 +1,20 @@
+encoding "utf8";
+
+import "kwtypes.proto";
+import "articles_base.proto";
+
+timeOfDay "утро" {
+	key = "утро"
+}
+
+timeOfDay "день" {
+	key = "день"
+}
+
+timeOfDay "вечер" {
+	key = "вечер"
+}
+
+timeOfDay "ночь" {
+	key = "ночь"
+}

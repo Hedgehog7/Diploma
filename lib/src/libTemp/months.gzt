@@ -1,0 +1,52 @@
+encoding "utf8";
+
+import "kwtypes.proto";
+import "articles_base.proto";
+
+month "январь" {
+	key = "январь"
+}
+
+month "февраль" {
+	key = "февраль"
+}
+
+month "март" {
+	key = "март"
+}
+
+month "апрель" {
+	key = "апрель"
+}
+
+month "май" {
+	key = "май"
+}
+
+month "июнь" {
+	key = "июнь"
+}
+
+month "июль" {
+	key = "июль"
+}
+
+month "август" {
+	key = "август"
+}
+
+month "сентябрь" {
+	key = "сентябрь"
+}
+
+month "октябрь" {
+	key = "октябрь"
+}
+
+month "ноябрь" {
+	key = "ноябрь"
+}
+
+month "декабрь" {
+	key = "декабрь"
+}

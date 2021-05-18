@@ -1,0 +1,38 @@
+procedure Main
+    call new_question
+end
+
+procedure new_question
+    form question_answer
+    connect next has_conclusion
+    #connect visualise visualisation
+    #connect fuzzy fuzzy
+    #connect temporal temporal
+end
+
+form has_conclusion
+    connect yes clearifying_information
+    #connect no ...
+    #connect visualise visualisation    
+end
+
+form conclusion
+    connect insert has_more_conclusions
+    #connect visualise visualisation
+    #connect abort
+    #connect fuzzy fuzzy
+    #connect temporal temporal
+end
+
+form has_more_conclusions
+    connect yes has_more_answers
+    #connect no ...
+    #connect visualise visualisation
+end
+
+procedure extra_answer    
+    form question_answer
+    connect yes question_answer
+    connect no question_answer
+    #connect visualise visualisation
+end

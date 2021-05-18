@@ -1,0 +1,32 @@
+encoding "utf8";
+
+import "kwtypes.proto";
+import "articles_base.proto";
+
+time "год" {
+	key = "год"
+}
+
+time "сутки" {
+	key = "сутки"
+}
+
+time "час" {
+	key = "час"
+}
+
+time "минута" {
+	key = "минута"
+}
+
+time "секунда" {
+	key = "секунда"
+}
+
+time "неделя" {
+	key = "неделя"
+}
+
+time "месяц" {
+	key = "месяц"
+}
