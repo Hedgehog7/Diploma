@@ -475,7 +475,7 @@ public:
 class action_t {
 protected:
 	int obj_id, attr_id;
-	string op;
+    string op;
 
 public:
 	virtual ~action_t() {
@@ -587,18 +587,30 @@ public:
 	virtual string to_xml(const knowledge_field_t& kf) const override;
 };
 
+class diff_condition_t{
+private:
+    string condition;
+public:
+    diff_condition_t():condition(""){}
+    diff_condition_t(string condition):condition(condition){}
+    ~diff_condition_t(){ condition = ""; }
+    string get_condition(){ return condition; }
+};
+
 class temporal_rule_t : public temporal_entity_t {
 private:
 	string type = "Обычное";
 	condition_t* condition = nullptr;
 	action_t* action = nullptr;
+    vector<diff_condition_t> neg_diff_condition;
+    vector<diff_condition_t> pos_diff_condition;
 
 public:
 	virtual ~temporal_rule_t() {
 		if (condition)
 			delete condition;
 		if (action)
-			delete action;
+            delete action;
 	}
 
 	temporal_rule_t(int id) : temporal_entity_t(id) {

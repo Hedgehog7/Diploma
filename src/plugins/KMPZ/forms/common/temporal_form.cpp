@@ -5,8 +5,23 @@
 #include "../../dictionary/temporal_dictionary.h"
 
 #include <QStandardItem>
+#include<QDir>
 
 #include <iostream>
+
+namespace TemporalForm_path {
+    std::string get_path()
+    {
+        // path to root folder of project (at_lite)
+        QDir dir;
+        QString path = dir.currentPath();
+        path.truncate(path.lastIndexOf('/'));
+        path.truncate(path.lastIndexOf('/'));
+        path.truncate(path.lastIndexOf('/'));
+        return path.toStdString();
+    }
+}
+
 
 TemporalForm::TemporalForm(QWidget* parent, IYOSDIInterpreter* interpreter, const QString& question, const QString& answer)
     : QDialog(parent)
@@ -41,7 +56,8 @@ void TemporalForm::on_cancelButton_clicked()
 void TemporalForm::parseData()
 {
     TemporalDictionary dict;
-    dict.load("dictionaries/specialDictionaryOfTemporalLeksems.dict");
+//    dict.load("dictionaries/specialDictionaryOfTemporalLeksems.dict");
+    dict.load((TemporalForm_path::get_path() + "/resources/dictionaries/specialDictionaryOfTemporalLeksems.dict").c_str());
 
     std::vector<std::wstring> search;
     search.push_back(_question.toStdWString());

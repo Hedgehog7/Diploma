@@ -6,7 +6,6 @@
 
 #include <QLabel>
 #include <QFile>
-#include <QDebug>
 
 APlugin * AT_CREATE_PLUGIN_FN()
 {    return new RUC1();
@@ -18,13 +17,11 @@ RUC1::RUC1()
 
 }
 
-int RUC1::executeTask(ATaskExecutionWindow * wnd, const std::string&, const std::vector<ADocumentRef*>&, const std::vector<ADocumentRef*>& out_docs, const std::string& login) {
+int RUC1::executeTask(ATaskExecutionWindow * wnd, const std::string&, const std::vector<ADocumentRef*>&, const std::vector<ADocumentRef*>& out_docs) {
   auto dialog = new MainWidget(wnd);
   wnd->setCentralWidget(dialog);
-  qDebug() << QString::fromStdString(login);
-  if (out_docs.size() > 0){
-    dialog->outFName.push_back(out_docs[0]->absolutePath().toStdString());
-   }
+  //dialog->outFName = out_docs[0]->absolutePath().toStdString();
+
   return 0;
 }
 
@@ -37,4 +34,7 @@ AError RUC1::executeCommand(const std::string&, std::string&) {
   return AError();
 }
 
-
+RUC1::~RUC1()
+{
+    delete this;
+}

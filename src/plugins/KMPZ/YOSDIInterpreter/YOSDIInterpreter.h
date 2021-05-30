@@ -2,16 +2,19 @@
 #define YOSDI_INTERPRETER_H
 
 #include "IInterpreter.h"
+#include "../pz_creator/pz_creator.h"
+#include "../forms/common/task_type_definition_form.h"
+#include "../forms/common/debug_pz.h"
+#include "../forms/diagnostics/question_answer_form.h"
+#include "YOSDI_forms_manager.h"
+#include "scenario_loader.h"
+#include <ATGUI/ATaskExecutionWindow.h>
+#include <QWidget>
+
+#include <assert.h>
 
 #include <memory>
 #include <map>
-
-class ATaskExecutionWindow;
-class QWidget;
-class Procedure;
-class ScenarioLoader;
-class YOSDIFormsManager;
-class PZCreator;
 
 class YOSDIInterpreter : public IYOSDIInterpreter
 {
@@ -20,17 +23,18 @@ public:
     ~YOSDIInterpreter();
 
 private:
-    virtual void event(const std::string& eventName) override;
-    virtual void addCondition(const std::string& attributeType, const std::string& attributeValue) override;
-    virtual void addAnswer(const std::string& answer) override;
-    virtual void removeCondition() override;
-    virtual void removeBranchConclusions() override;
-    virtual void addRule() override;
-    virtual void addConclusion(const std::string& conclusion) override;
-    virtual void switchForm(YOSDIForm* form) override;
-    virtual const branch_t& getLastBranch() const override;
-    virtual const std::string& getLastQuestion() override;
-    virtual const std::string& getLastAnswer() override;
+    void event(const std::string& eventName) override;
+    void addCondition(const std::string& attributeType, const std::string& attributeValue) override;
+//    void addDifferentialCondition(const int& rule_number, const std::string& attributeValue) override;
+    void addAnswer(const std::string& answer) override;
+    void removeCondition() override;
+    void removeBranchConclusions() override;
+    void addRule() override;
+    void addConclusion(const std::string& conclusion) override;
+    void switchForm(YOSDIForm* form) override;
+    const branch_t& getLastBranch() const override;
+    const std::string& getLastQuestion() const override;
+    const std::string& getLastAnswer() const override;
 
     void executeProcedure(const Procedure& procedure);
     void showForm(const std::string& formName);

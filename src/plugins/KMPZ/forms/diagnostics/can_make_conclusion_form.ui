@@ -29,7 +29,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>14</y>
+     <y>10</y>
      <width>700</width>
      <height>58</height>
     </rect>
@@ -39,6 +39,12 @@
      <width>16777215</width>
      <height>78</height>
     </size>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(225, 225, 225)</string>
    </property>
    <property name="readOnly">
     <bool>true</bool>
@@ -136,9 +142,9 @@
    <property name="geometry">
     <rect>
      <x>740</x>
-     <y>14</y>
+     <y>10</y>
      <width>191</width>
-     <height>34</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -149,9 +155,9 @@
    <property name="geometry">
     <rect>
      <x>740</x>
-     <y>57</y>
+     <y>50</y>
      <width>191</width>
-     <height>34</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -165,9 +171,9 @@
    <property name="geometry">
     <rect>
      <x>740</x>
-     <y>100</y>
+     <y>90</y>
      <width>191</width>
-     <height>34</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">

@@ -350,7 +350,6 @@
       <nodes>
         <node id="31" name="создать &quot;тренинг с ИЭС&quot;" type="NFFunction" />
 	<node id="32" name="Реализовать обучающее воздействие типа &quot;тренинг с ИЭС&quot;" type="NFFunction" />
-	<node id="33" name="НФ-операция" type="NFFunction" />
 
 	<node id="21" name="создать УТЗ" type="Function" />
 	<node id="22" name="создать ГТ-учебник" type="Function" />
@@ -370,9 +369,10 @@
 	<node id="216" name="выявить уровень умений" type="Function" />
 	<node id="217" name="выявить уровень знаний" type="Function" />
 	<node id="218" name="построить психологический портрет" type="Function" />
-	<node id="51" name="действие1" type="Function" />
-	<node id="52" name="действие2" type="Function" />
-	<node id="53" name="действие3" type="Function" />
+	<node id="219" name="создать онтологию курса/дисциплины" type="Function" />
+	<node id="220" name="построить модель обучения" type="Function" />
+	<node id="221" name="мониторить процесс функционирования ИЭС" type="Function" />
+	<node id="222" name="построить модель обучаемого" type="Function" />
 
         <node id="11" name="БД онтологий" type="Storage" />
         <node id="12" name="БД обучающих воздействий" type="Storage" />
@@ -386,51 +386,246 @@
 	
       </nodes>
       <flows>
-	<flow data="задание" src_id="41" dest_id="33"/>
-	<flow data="1" src_id="41" dest_id="51"/>
-	<flow data="1" src_id="41" dest_id="52"/>
-	<flow data="1" src_id="41" dest_id="53"/>
-	<!--><flow data="задание" src_id="41" dest_id="23"/>
-	<flow data="решения" src_id="42" dest_id="217"/>
-	<flow data="решения" src_id="11" dest_id="23"/>
-	<flow data="решения" src_id="11" dest_id="217"/>
-	<flow data="контрольные тесты" src_id="217" dest_id="42"/><!-->
+	<flow data="задание" src_id="41" dest_id="21"/>
+	<flow data="знания" src_id="41" dest_id="22"/>
+	<flow data="знания" src_id="41" dest_id="31"/>
+	<flow data="знания, опыт" src_id="41" dest_id="24"/>
+	<flow data="знания, опыт" src_id="41" dest_id="23"/>
+	<flow data="знания" src_id="41" dest_id="25"/>
+	<flow data="запрос" src_id="41" dest_id="29"/>
+	<flow data="запрос" src_id="41" dest_id="210"/>
+	<flow data="решения" src_id="41" dest_id="211"/>
+	<flow data="элемент курса" src_id="11" dest_id="21"/>
+	<flow data="УТЗ" src_id="21" dest_id="12"/>
+	<flow data="элемент курса" src_id="11" dest_id="22"/>
+	<flow data="ГТ-учебник" src_id="22" dest_id="12"/>
+	<flow data="элемент курса" src_id="11" dest_id="31"/>
+	<flow data="тренинг" src_id="31" dest_id="12"/>
+	<flow data="вопросы для выявления знаний" src_id="23" dest_id="13"/>
+	<flow data="иерархическая структура класса" src_id="11" dest_id="23"/>
+	<flow data="структура курса" src_id="24" dest_id="11"/>
+	<flow data="связи между элементами" src_id="25" dest_id="11"/>
+	<flow data="онтология" src_id="11" dest_id="25"/>
+	<flow data="связи элементов и компетенций" src_id="27" dest_id="11"/>
+	<flow data="модель целевых компетенций" src_id="26" dest_id="11"/>
+	<flow data="записи таблицы пользователей" src_id="28" dest_id="14"/>
+	<flow data="данные обучаемых" src_id="41" dest_id="28"/>
+	<flow data="ведомость" src_id="29" dest_id="41"/>
+	<flow data="модели обучаемых" src_id="14" dest_id="29"/>
+	<flow data="графики, таблицы, отчеты" src_id="210" dest_id="41"/>
+	<flow data="модели обучаемых" src_id="14" dest_id="210"/>
 
+    	<flow data="решения" src_id="42" dest_id="211"/>
+	<flow data="обучающие воздействия" src_id="211" dest_id="42"/>
+	<flow data="план обучения" src_id="15" dest_id="211"/>
+	<flow data="обучающие воздействия" src_id="12" dest_id="211"/>
+	<flow data="начальная модель обучаемого, текущая модель обучаемого" src_id="14" dest_id="213"/>
+	<flow data="план обучения" src_id="213" dest_id="15"/>
+	<flow data="информация об обучающих воздействиях" src_id="12" dest_id="213"/>
+	<flow data="знания, опыт" src_id="41" dest_id="212"/>
+	<flow data="обучающие воздействия" src_id="212" dest_id="12"/>
+	<flow data="онтологии" src_id="11" dest_id="212"/>
 
+	<flow data="раздел ГТ-учебника" src_id="12" dest_id="214"/>
+	<flow data="раздел ГТ-учебника" src_id="214" dest_id="42"/>
+	<flow data="решение" src_id="42" dest_id="215"/>
+	<flow data="задача" src_id="215" dest_id="42"/>
+	<flow data="УТЗ" src_id="12" dest_id="215"/>
+	<flow data="тренинг" src_id="12" dest_id="32"/>
+	<flow data="контроль" src_id="42" dest_id="32"/>
+	<flow data="консультация" src_id="32" dest_id="42"/>
 
+	<flow data="решение" src_id="42" dest_id="216"/>
+	<flow data="задание" src_id="216" dest_id="42"/>
+	<flow data="решение" src_id="42" dest_id="217"/>
+	<flow data="контрольные тесты" src_id="217" dest_id="42"/>
+	<flow data="решение" src_id="42" dest_id="218"/>
+	<flow data="психологические тесты" src_id="218" dest_id="42"/>
+	<flow data="психологические тесты" src_id="16" dest_id="218"/>
+	<flow data="онтология курса, онтология дисциплины" src_id="11" dest_id="217"/>
+	<flow data="варианты" src_id="13" dest_id="216"/>
+	<flow data="тесты" src_id="13" dest_id="217"/>
+	<flow data="текущий уровень умений" src_id="216" dest_id="14"/>
+	<flow data="текущий уровень знаний" src_id="217" dest_id="14"/>
+	<flow data="психологический портрет" src_id="218" dest_id="14"/>
+
+	<flow data="умения, знания, психологические тесты" src_id="42" dest_id="222"/>
+	<flow data="тесты, задания" src_id="222" dest_id="42"/>
+	<flow data="онтология" src_id="11" dest_id="222"/>
+	<flow data="онтология" src_id="11" dest_id="220"/>
+	<flow data="модель обучаемого" src_id="14" dest_id="220"/>
+	<flow data="модель обучаемого" src_id="222" dest_id="14"/>
+	<flow data="данные об обучаемых" src_id="41" dest_id="221"/>
+	<flow data="данные мониторинга" src_id="221" dest_id="41"/>
+	<flow data="знания, опыт" src_id="41" dest_id="219"/>
+	<flow data="тесты, варианты" src_id="219" dest_id="13"/>
+	<flow data="модели обучаемых" src_id="14" dest_id="221"/>
+	<flow data="контрольные варианты, задания" src_id="13" dest_id="222"/>
+	<flow data="онтология" src_id="219" dest_id="11"/>
 
       </flows>
       <fragments>
         <fragment id="0" name="Основной" primary="1">
           <nodes>
-		<node_ref id="51"/>
-		<node_ref id="41"/>
-		<node_ref id="33"/>
+        	<node_ref id="32"/>
+		<node_ref id="42"/>
+		<node_ref id="12"/>
           </nodes>
+          <documents>
+            <document id="0" name="Поле знаний" extension="log"/>
+	    <document id="1" name="Протокол верификации" extension="log"/>
+            <document id="2" name="База знаний"  extension="kbs"/>
+            <document id="4" name="Протокол интервьюирования" extension="log"/>
+            <document id="5" name="Сценарий диалога" extension="dsf"/>    
+          </documents>
         </fragment>
-	<fragment id="1" name="Create ontology" primary="0">
-          <nodes>
-		<node_ref id="33"/>
-		<node_ref id="41"/>
-	    	<node_ref id="52"/>	    	
+	<fragment id="1" name="Create learning actions" primary="0">
+          <nodes> 
+	    	<node_ref id="41"/>
+	    	<node_ref id="21"/>
+	    	<node_ref id="22"/>
+	    	<node_ref id="31"/>	
+		<node_ref id="11"/>
+	    	<node_ref id="12"/>
           </nodes>
+	  <documents>
+            <document id="10" name="Поле знаний" extension="log"/>   
+          </documents>
         </fragment>
-	<fragment id="2" name="Student model" primary="0">
-          <nodes>
-	    	<node_ref id="53"/>
+	<fragment id="2" name="Create ontology" primary="0">
+          <nodes> 
+	    	<node_ref id="23"/>
+	    	<node_ref id="24"/>
+	    	<node_ref id="13"/>	
+		<node_ref id="25"/>
+	    	<node_ref id="26"/>
+	    	<node_ref id="27"/>
           </nodes>
+	  <documents>
+            <document id="20" name="Поле знаний" extension="log"/>   
+          </documents>
+        </fragment>
+	<fragment id="3" name="Func process monitoring" primary="0">
+          <nodes> 
+	    	<node_ref id="28"/>
+	    	<node_ref id="29"/>
+	    	<node_ref id="210"/>	
+		<node_ref id="14"/>
+          </nodes>
+	  <documents>
+            <document id="30" name="Поле знаний" extension="log"/>   
+          </documents>
+        </fragment>
+	<fragment id="4" name="Learning model" primary="0">
+          <nodes> 
+	    	<node_ref id="42"/>
+	    	<node_ref id="211"/>
+	    	<node_ref id="15"/>
+	    	<node_ref id="212"/>
+	    	<node_ref id="213"/>
+          </nodes>
+	  <documents>
+            <document id="40" name="Поле знаний" extension="log"/>   
+          </documents>
+        </fragment>
+	<fragment id="5" name="Realize learning plan" primary="0">
+          <nodes> 
+	    	<node_ref id="214"/>
+	    	<node_ref id="215"/>
+	    	<node_ref id="32"/>
+          </nodes>
+	  <documents>
+            <document id="50" name="Поле знаний" extension="log"/>   
+          </documents>
+        </fragment>
+	<fragment id="6" name="Student model" primary="0">
+          <nodes> 
+	    	<node_ref id="216"/>
+	    	<node_ref id="217"/>
+	    	<node_ref id="218"/>
+	    	<node_ref id="16"/>
+          </nodes>
+	  <documents>
+            <document id="60" name="Поле знаний" extension="log"/>   
+          </documents>
+        </fragment>
+	<fragment id="7" name="Top level" primary="0">
+          <nodes>
+            	
+		<node_ref id="219"/>
+		<node_ref id="220"/>
+		<node_ref id="221"/>
+		<node_ref id="222"/>
+          </nodes>
+	  <documents>
+            <document id="70" name="Поле знаний" extension="log"/>   
+          </documents>
         </fragment>
       </fragments>
       <network>
-	<task id="0" fragment_id="0" name="Действие П1" stage="Построение онтологии курса/дисциплины" executor="ruc1">
+        <task id="0" fragment_id="0" name="Приобретение знаний" stage="Анализ системных требований" executor="ruc1">
+          <!--><output>
+            <document id="0"/>
+	    <document id="4"/>
+          </output><!-->
         </task>
-	<task id="1" fragment_id="1" name="Действие П2" stage="Построение онтологии курса/дисциплины" executor="ruc1">
+	<task id="1" fragment_id="0" name="Конвертация ПЗ в БЗ" stage="Анализ системных требований" executor="at_verifier">
+          <predcessors>
+            <predcessor id="0"/>
+          </predcessors>
+	  <input>
+            <document id="0"/>
+          </input>
+	  <output>
+            <document id="1"/>
+            <document id="2"/>
+          </output>
         </task>
-	<task id="2" fragment_id="2" name="Действие П3" stage="Построение онтологии курса/дисциплины" executor="ruc1">
+	<task id="2" fragment_id="1" name="Построение модели обучаемого" stage="Проектирование" executor="ruc1">
+          <predcessors>
+            <predcessor id="1"/>
+          </predcessors>
         </task>
-	<!--><task id="3" fragment_id="2" name="Действие С1" stage="Построение модели обучаемого" executor="ruc1">
-        </task><!-->
-
+	<task id="3" fragment_id="1" name="Построение онтологии курса/дисциплины" stage="Проектирование" executor="ruc1">
+          <predcessors>
+            <predcessor id="2"/>
+          </predcessors>
+        </task>
+	<task id="4" fragment_id="1" name="Построение модели обучения" stage="Проектирование" executor="ruc1">
+          <predcessors>
+            <predcessor id="2"/>
+          </predcessors>
+        </task>
+	<task id="5" fragment_id="1" name="Конвертация ПЗ в БЗ" stage="Проектирование" executor="ATVerifier">
+          <predcessors>
+            <predcessor id="2"/>
+          </predcessors>
+        </task>
+	<task id="6" fragment_id="1" name="Конфигурирование компонентов" stage="Проектирование" executor="tester">
+          <predcessors>
+            <predcessor id="2"/>
+          </predcessors>
+        </task>
+	<task id="7" fragment_id="3" name="Создание пользовательского интерфейса" stage="Реализация" executor="tester">
+          <predcessors>
+            <predcessor id="9"/>
+          </predcessors>
+        </task>
+	<task id="8" fragment_id="3" name="Интеграция с внешними системами" stage="Реализация" executor="tester">
+          <predcessors>
+            <predcessor id="10"/>
+          </predcessors>
+        </task>
+	<task id="9" fragment_id="3" name="Общая интеграция компонентов" stage="Реализация" executor="tester">
+          <predcessors>
+            <predcessor id="11"/>
+          </predcessors>
+        </task>
+	<task id="10" fragment_id="3" name="Тестирование" stage="Тестирование" executor="tester">
+          <predcessors>
+            <predcessor id="12"/>
+          </predcessors>
+        </task>
       </network>
     </procedure>
   </procedures>

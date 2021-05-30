@@ -33,7 +33,6 @@ SOURCES +=  kmpz.cpp \
             forms/diagnostics/conclusion_form.cpp \
             forms/diagnostics/has_other_answer.cpp \
             forms/diagnostics/can_make_conclusion_form.cpp \
-                        target_selector/target_selector.cpp\
             AMRR/amrr_form.cpp \
             AMRR/instruction.cpp \
             AMRR/diffconcepts.cpp \

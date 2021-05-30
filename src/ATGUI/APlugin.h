@@ -35,7 +35,7 @@ public:
 	const std::string & ext() const;
 	Type type() const;
 
-        virtual int executeTask(ATaskExecutionWindow * wnd, const std::string & cmd_id, const std::vector<ADocumentRef*> & input_docs, const std::vector<ADocumentRef*> & out_docs, const std::string & login);
+	virtual int executeTask(ATaskExecutionWindow * wnd, const std::string & cmd_id, const std::vector<ADocumentRef*> & input_docs, const std::vector<ADocumentRef*> & out_docs);
 
 private:
 	const Type m_type;

@@ -33,7 +33,7 @@ void DSFEditorPlugin::openFile(ADocument * file)
 {
 }
 
-int DSFEditorPlugin::executeTask(ATaskExecutionWindow * wnd, const std::string & cmd_id, const std::vector<ADocumentRef*> & input_docs, const std::vector<ADocumentRef*> & out_docs, const std::string& login)
+int DSFEditorPlugin::executeTask(ATaskExecutionWindow * wnd, const std::string & cmd_id, const std::vector<ADocumentRef*> & input_docs, const std::vector<ADocumentRef*> & out_docs)
 {
 	auto te = new QTextEdit(wnd);
 	wnd->setCentralWidget(te);

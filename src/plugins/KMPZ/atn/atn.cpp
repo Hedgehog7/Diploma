@@ -10,6 +10,7 @@
 namespace ATN_ns {
     std::string get_path()
     {
+        // path to root folder of project (at_lite)
         QDir dir;
         QString path = dir.currentPath();
         path.truncate(path.lastIndexOf('/'));
@@ -49,7 +50,8 @@ void ATN::loadData(const std::string& answer)
 
 void ATN::execute()
 {
-    system("~/fullat/src/plugins/KMPZ/KMPZTests/start.bat");
+//    system("~/fullat/src/plugins/KMPZ/KMPZTests/start.bat");
+    system(("wine " + ATN_ns::get_path() + "/resources/libTemp/analyzer.exe " + ATN_ns::get_path() + "/resources/libTemp/config.proto").c_str());
 }
 
 //при переносе в другие места необходимо изменить пути в здесь, в start.bat и config.blabla
