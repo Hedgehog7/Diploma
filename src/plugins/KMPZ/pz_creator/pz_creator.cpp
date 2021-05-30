@@ -123,21 +123,6 @@ void PZCreator::removeBranchConclusions(){
     _last_branch_conclusions.clear();
 }
 
-const branch_t& PZCreator::getLastBranch() const
-{
-    branch_t* result = new branch_t;
-    auto conditions = _questionAnswerStack.getConditions();
-    for (auto condition: conditions){
-        result->first.push_back(condition.attributeType + ": " + condition.attributeValues.back());
-    }
-    result->second = _last_branch_conclusions;
-    return *result;
-}
-
-void PZCreator::removeBranchConclusions(){
-    _last_branch_conclusions.clear();
-}
-
 std::string PZCreator::getBZ()
 {
 	return _knowledgeField.to_string();
