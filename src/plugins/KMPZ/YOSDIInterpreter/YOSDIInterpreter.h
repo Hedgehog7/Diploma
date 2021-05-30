@@ -24,8 +24,11 @@ private:
     virtual void addCondition(const std::string& attributeType, const std::string& attributeValue) override;
     virtual void addAnswer(const std::string& answer) override;
     virtual void removeCondition() override;
+    virtual void removeBranchConclusions() override;
     virtual void addRule() override;
     virtual void addConclusion(const std::string& conclusion) override;
+    virtual void switchForm(YOSDIForm* form) override;
+    virtual const branch_t& getLastBranch() const override;
     virtual const std::string& getLastQuestion() override;
     virtual const std::string& getLastAnswer() override;
 
