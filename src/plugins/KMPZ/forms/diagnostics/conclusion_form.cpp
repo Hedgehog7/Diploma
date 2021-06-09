@@ -17,6 +17,11 @@ ConclusionForm::~ConclusionForm()
 
 void ConclusionForm::on_inputButton_clicked()
 {
+    QString strForHTML;
+    QString conclusionStr = QString::fromUtf8(u8"Заключение: ");
+
+    strForHTML = conclusionStr + ui->conclusion->text();
+
     auto conclusion = ui->conclusion->text().toStdString();
 
     _interpreter->addConclusion(conclusion);

@@ -42,10 +42,29 @@ PZCreator::PZCreator()
 	_knowledgeField.add_attr(object, attributeName, "Время"); //"Время"
 	_eventAttributeId = object->get_attr_id_by_name(attributeName);
 	_knowledgeField.add_type("Время"); //"Время"
+
+    this->protocol = NULL;
+    this->lastAction = NULL;
 }
 
 void PZCreator::addQuestionAndAnswer(const std::string& question, const std::string& answer)
 {
+    InterviewTreeNode* questionNode;
+    if (_questionAnswerStack.empty()) {
+        this->protocol = new InterviewTree(QString::fromStdString(question));
+        questionNode = this->protocol->GetRoot();
+    }
+    else {
+        questionNode = new InterviewTreeNode(QString::fromStdString(question));
+        this->lastAction->AddChild(questionNode);
+    }
+
+    InterviewTreeNode* answerNode = new InterviewTreeNode(QString::fromStdString(answer));
+    questionNode->AddChild(answerNode);
+
+    this->lastAction = answerNode;
+
+
 	auto attributeId = addAttributeToMainObject(question); //"Симптом"
 
 	_atn.init(false);
@@ -85,6 +104,13 @@ void PZCreator::addAnswer(const std::string& answer)
 	_questionAnswerStack.add(answer, symptom);
 
 	_knowledgeField.add_type_value(_questionAnswerStack.top().attributeType, symptom); //"Симптом"
+
+    InterviewTreeNode* questionNode = this->lastAction->parent;
+
+    InterviewTreeNode* answerNode = new InterviewTreeNode(QString::fromStdString(answer));
+    questionNode->AddChild(answerNode);
+
+    this->lastAction = answerNode;
 }
 
 std::string PZCreator::getSymptom(const vector<string>& tempLexemes, const std::string& answer)
@@ -106,6 +132,10 @@ void PZCreator::removeQuestion()
 	std::cout << "PZ: " << _knowledgeField.to_string() << std::endl;
 
     _questionAnswerStack.pop();
+
+    if (this->lastAction->parent->parent) {
+        this->lastAction = this->lastAction->parent->parent;
+    }
 }
 
 const branch_t& PZCreator::getLastBranch() const
@@ -155,6 +185,9 @@ void PZCreator::addConclusion(const std::string& conclusion)
 	_knowledgeField.add_condition(rule, getCurrentCondition());
 	_knowledgeField.add_action(rule, action);
     _last_branch_conclusions.push_back(conclusion);
+
+    InterviewTreeNode* concl = new InterviewTreeNode(QString::fromStdString(conclusion));
+        this->lastAction->AddChild(concl);
 }
 
 const QuestionAnswerStack::Condition& PZCreator::getLastQuestion() const

@@ -17,6 +17,21 @@ void YOSDIInterpreter::event(const std::string& eventName)
 {
     if( _isFinished )
     {
+        QFile file;
+        QTextStream stream;
+
+        file.setFileName("html_prepare.html");
+        if (!file.open(QIODevice::WriteOnly))
+        {
+
+        }
+        else
+        {
+            stream.setDevice(&file);
+            stream << this->_PZCreator->protocol->toHTML();
+            file.close();
+        }
+
         _currentWidget.reset(nullptr);
 
         DebugPZ* pz = new DebugPZ(nullptr, QString::fromStdString(_PZCreator->getBZ()));

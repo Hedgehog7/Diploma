@@ -25,11 +25,13 @@ QuestionAnswerForm::~QuestionAnswerForm()
 void QuestionAnswerForm::on_nextButton_clicked()
 {
 	auto answer = ui->answerEdit->text().toStdString();
+    QString tmp = ui->questionEdit->text();
 
 	if (_isNew)
 	{
 		//ui->questionEdit->setText("???????");
-		auto question = ui->questionEdit->text().toStdString();
+        //auto question = ui->questionEdit->text().toStdString();
+        auto question = tmp.toStdString();
 
 		//auto question = ru("???????").toStdString();
 

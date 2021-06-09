@@ -8,6 +8,7 @@
 #include "../../../libs/KnowledgeField/knowledge_field_t.h"
 
 #include <memory>
+#include "../tree.h"
 #include <QDir>
 
 typedef std::pair<std::vector<std::string>, std::vector<std::string>> branch_t;
@@ -17,6 +18,8 @@ class PZCreator
 public:
 	PZCreator();
 
+    InterviewTree *protocol;
+    InterviewTreeNode *lastAction;
 	void addQuestionAndAnswer(const std::string& question, const std::string& answer);
 	void addAnswer(const std::string& answer);
 	void removeQuestion();

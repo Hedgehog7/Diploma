@@ -2,6 +2,7 @@
 #define CONCLUSION_FORM_H
 
 #include "../YOSDI_form.h"
+#include "../../tree.h"
 
 namespace Ui {
 class ConclusionForm;

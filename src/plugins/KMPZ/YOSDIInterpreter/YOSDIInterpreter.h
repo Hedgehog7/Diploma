@@ -10,7 +10,7 @@
 #include "scenario_loader.h"
 #include <ATGUI/ATaskExecutionWindow.h>
 #include <QWidget>
-
+#include <QTextStream>
 #include <assert.h>
 
 #include <memory>

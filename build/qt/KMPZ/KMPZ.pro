@@ -44,6 +44,7 @@ SOURCES +=  kmpz.cpp \
             atn/atn.cpp
 
 HEADERS +=  kmpz_global.h \
+            ../../../src/plugins/KMPZ/tree.h \
             kmpz.h \
             YOSDIInterpreter/IInterpreter.h \
             YOSDIInterpreter/YOSDIInterpreter.h \
